@@ -1,4 +1,4 @@
-# [Insira o Nome do Projeto]
+# Churn Streaming
 
 ![image](https://github.com/danielesantiago/TemplatePED/assets/64613885/cc24a702-46b8-4263-a764-8c65c56f02ac)
 
