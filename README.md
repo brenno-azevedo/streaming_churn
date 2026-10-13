@@ -8,7 +8,7 @@ Este projeto visa [insira o objetivo principal do projeto aqui, por exemplo, "an
 
 📄 [Veja o template da apresentação](https://github.com/profrenatabiaggi/template/blob/master/reports/figures/Template_Case.pptx)
 
-📄 [Veja o template do notebook](https://github.com/profrenatabiaggi/template/blob/master/notebooks/Case_Fraude.ipynb)
+📄 [Veja o template do notebook](https://github.com/brenno-azevedo/streaming_churn/blob/master/notebooks/Estast%C3%ADstica_I.ipynb)
 
 ## 💼 Entendimento do Negócio
 
