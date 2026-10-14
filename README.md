@@ -48,19 +48,35 @@ dado, o que está errado nele, e o que ele já responde sem modelagem nenhuma.**
 
 ## 📈 Principais achados
 
-[ESCREVA AQUI — três a quatro frases com o que você recomendaria à diretoria.
-Os números estão no notebook: o Pareto dos motivos, o gargalo do funil, o que a
-coorte mostra sobre as safras recentes e o tamanho do segmento "Em risco" no RFM.]
+Preço (33,6%) e pouco conteúdo novo (25,4%) somam 59% dos cancelamentos. São duas frentes com donos diferentes: precisamos revisar a proposta de valor do plano de entrada com o time comercial e ajustar a quantidade de conteúdo entregue com o time de produto.
+
+A coorte mostra o que a taxa de churn global esconde: quem entrou em dezembro/22 chegou ao 8º mês com 96% de retenção, enquanto quem entrou em maio/23 chegou com 71%. Mesmo momento de vida, 25 pontos a menos em cinco meses de diferença na entrada. As taxas por canal são parecidas (de 22,7% a 27,1%), o que torna menos provável que a explicação esteja na aquisição. Precisamos separar as duas hipóteses: piorou o produto ou piorou a qualidade de quem estamos trazendo.
+
+Já sobre a conversão, o funil mostra um gargalo entre quem assistiu a 1ª aula e quem assinou o plano: a conversão cai para 39,5%, contra 67,5% e 79,9% das etapas anteriores. O funil aponta onde perdemos, não o porquê — mas a queda acontece justamente na hora de pagar, o que conversa com o preço sendo o motivo nº 1 de cancelamento.
+
+Por fim, um dado que contraria a leitura óbvia do Pareto: se preço fosse o problema, o premium cancelaria mais — mas quem lidera é o básico, com 27,3% contra 21,4%. O ciclo de cobrança não muda nada (mensal 24,3%, anual 24,1%), o que reforça a hipótese. Antes de mexer no preço, precisamos entender por que o plano de entrada não sustenta valor.
 
 ## ⚠️ Limitações
 
-[ESCREVA AQUI — o que esta análise **não** permite concluir. A distinção entre
-descrever, prever e explicar: o Pareto diz qual motivo é mais citado, mas isso não
-prova que agir sobre ele reduziria o churn.]
+Esta análise mostra o que aconteceu, não o que vai acontecer se mudarmos alguma coisa. Saber que preço é o motivo mais citado não garante que baixar o preço reduziria os cancelamentos. Para afirmar isso, seria preciso testar na prática — um grupo recebendo a mudança e outro não, para comparar.
+
+O motivo do cancelamento é o que o cliente escolheu numa lista. E preço é sempre a resposta mais fácil de marcar. Quem simplesmente parou de usar dificilmente vai admitir isso num formulário, então o peso do preço pode estar maior do que o problema real. O achado sobre o plano básico aponta justamente nessa direção.
+
+O arquivo do funil diz quem passou por cada etapa, mas não diz quando. A ordem das etapas foi assumida porque faz sentido para o negócio, não porque os dados comprovam. Também não dá para saber quanto tempo a pessoa demora entre uma etapa e outra.
+
+Sobre o uso da plataforma, só temos números totais. Sabemos quantas horas cada pessoa assistiu no acumulado, mas não se ela foi assistindo cada vez menos antes de cancelar. É esse histórico que confirmaria — ou derrubaria — a hipótese do plano de entrada.
+
+Os dados são uma foto de um único dia (31/01/2024) e foram criados para fins de estudo. Quem entrou há pouco tempo quase não teve chance de aparecer como cancelamento, e os padrões aqui podem não se repetir numa base real.
 
 ## 🚧 Próximos passos
 
-[ESCREVA AQUI]
+Agir agora sobre quem está em risco. O RFM identificou 708 clientes ativos (20,6% da base) que já foram frequentes e andam sumidos. Esses ainda não cancelaram, então é o único grupo em que dá para agir de forma preventiva com o que já temos em mãos.
+
+Pedir o histórico de acesso com data. Hoje sabemos o total de horas que cada pessoa assistiu, mas não como isso evoluiu. Com o registro mês a mês dá para ver se o uso foi caindo antes do cancelamento — e é isso que confirma ou derruba a hipótese de que o plano de entrada não entrega valor suficiente.
+
+Conversar com quem parou na hora de assinar. O funil mostra onde a perda acontece, mas nenhum dado vai dizer o porquê. Algumas entrevistas com quem assistiu a primeira aula e não assinou resolvem em uma semana o que a base não responde.
+
+Testar antes de aplicar em todo mundo. Qualquer mudança no plano de entrada — preço, quantidade de conteúdo, formato — deve valer primeiro para uma parte dos clientes, mantendo o resto como comparação. É a única forma de saber se o resultado veio da mudança ou foi coincidência.
 
 ---
 
