@@ -1,82 +1,112 @@
-# Churn Streaming
+# Análise Exploratória de Churn — Plataforma de Streaming
 
-![image](https://github.com/danielesantiago/TemplatePED/assets/64613885/cc24a702-46b8-4263-a764-8c65c56f02ac)
+Análise exploratória completa de uma base de 5.025 assinantes de uma plataforma de
+cursos online, da limpeza de dados até quatro frameworks de decisão de negócio —
+sem nenhum modelo preditivo.
 
+**Projeto da disciplina _Dados, IA e Negócio_ — Pós-graduação em Data Science e IA (UNIPDS/Anhanguera)**
 
-## 📌 Visão Geral
-Este projeto visa [insira o objetivo principal do projeto aqui, por exemplo, "analisar dados de vendas para identificar tendências de mercado"]. Utilizamos [insira as técnicas utilizadas, por exemplo, "técnicas avançadas de análise de dados, machine learning e processamento de linguagem natural"] para [insira o resultado esperado do projeto, por exemplo, "identificar padrões de compra e prever tendências futuras"].
+📓 **[Abrir o notebook](notebooks/01-analise-exploratoria-churn.ipynb)** ·
+[Executar no Colab](https://colab.research.google.com/github/brenno-azevedo/streaming_churn/blob/master/notebooks/01-analise-exploratoria-churn.ipynb)
 
-📄 [Veja o template da apresentação](https://github.com/profrenatabiaggi/template/blob/master/reports/figures/Template_Case.pptx)
+---
 
-📄 [Veja o template do notebook](https://github.com/brenno-azevedo/streaming_churn/blob/master/notebooks/Estast%C3%ADstica_I.ipynb)
+## 💼 O problema de negócio
 
-## 💼 Entendimento do Negócio
+A diretoria de uma plataforma de cursos por assinatura desconfia que o cancelamento
+piorou, e ninguém sabe explicar por quê. Foi entregue um extrato de 5.025 clientes,
+exportado às pressas de três sistemas diferentes — portanto com inconsistências reais.
 
-[Descreva o contexto e a importância do seu projeto. Por exemplo, "No contexto atual de crescente volume de dados, entender padrões complexos em comportamentos de consumidores é crucial para estratégias de marketing eficazes."]
+Antes de perguntar "que modelo usar", a pergunta é mais básica: **o que existe nesse
+dado, o que está errado nele, e o que ele já responde sem modelagem nenhuma.**
 
-**Tipos de Análise Realizados:**
-- [Insira o tipo de análise, por exemplo, "Análise de Sentimento"]
-- [Outro tipo de análise, por exemplo, "Tendências de Mercado"]
-- [Mais um tipo, por exemplo, "Padrões de Comportamento do Consumidor"]
+## 🔍 O que foi feito
 
-**Principais Indicadores Chave de Desempenho:**
-- [Primeiro indicador, por exemplo, "Taxa de Conversão"]
-- [Segundo indicador, por exemplo, "Retenção de Clientes"]
-- [Terceiro indicador, por exemplo, "Satisfação do Cliente"]
+| Etapa | Conteúdo |
+|---|---|
+| **Análise univariada** | Tipos, valores ausentes, cardinalidade, padronização de categorias e deduplicação |
+| **Saneamento** | Consistência lógica entre as quatro colunas de data e tratamento de outliers por tipo |
+| **Engenharia de atributos** | Criação de `recencia`, `meses_assinatura` e `receita_acumulada` |
+| **Análise bivariada** | Relação de cada variável com o churn, sobre base filtrada por maturidade mínima |
+| **Frameworks de decisão** | Coorte de retenção, RFM adaptado, Pareto dos motivos e funil de onboarding |
 
-## 📊 Análise do Modelo Atual
+## 🧹 O que o dado tinha de errado
 
-[Descreva a situação atual e o que seu projeto propõe a melhorar. Por exemplo, "Nosso modelo atual enfrenta desafios em... A análise visa otimizar..."]
+| Problema | Escala |
+|---|---|
+| Grafias inconsistentes em `plano` | 8 grafias para 3 planos |
+| Grafias inconsistentes em `canal_aquisicao` | 9 grafias para 4 canais |
+| Valor curinga `"?"` em `regiao` | 170 registros |
+| Erro de escala em `valor_mensal` | 596 registros (~12% da base) |
+| Idades impossíveis (−2, 0, 1, 150, 300) | 13 registros |
+| Último acesso anterior à assinatura | 1 registro |
+| Clientes duplicados | 25 `cliente_id` repetidos |
 
+> **Detalhe que vale registrar:** as duplicatas só ficam visíveis **depois** de padronizar
+> as grafias. Antes disso, `duplicated()` encontra apenas 1 linha, porque `"Padrao"` e
+> `"Padrão"` não batem como texto. A ordem das etapas de limpeza muda o resultado.
 
-## 🛠 Pré-processamento 
-O pré-processamento de dados é crucial em projetos de machine learning. Utilizamos [insira as ferramentas ou métodos usados, por exemplo, "Pipeline do Scikit-learn"] para garantir eficácia e reprodutibilidade. 
+## 📈 Principais achados
 
-_Considerações Importantes:_
-1. [Primeira consideração, por exemplo, "Todos os valores estão em uma única unidade de medida."]
-2. [Segunda consideração, por exemplo, "Os dados são anônimos para proteger a privacidade dos usuários."]
-   
-_Etapas do Pré-processamento no Pipeline:_
-1. [Primeira etapa, por exemplo, "Normalização dos Dados"]
-2. [Segunda etapa, por exemplo, "Tratamento de Valores Ausentes"]
-3. [Terceira etapa, por exemplo, "Codificação de Variáveis Categóricas"]
+[ESCREVA AQUI — três a quatro frases com o que você recomendaria à diretoria.
+Os números estão no notebook: o Pareto dos motivos, o gargalo do funil, o que a
+coorte mostra sobre as safras recentes e o tamanho do segmento "Em risco" no RFM.]
 
-## 🤖 Modelagem e Avaliação
+## ⚠️ Limitações
 
-Utilizamos [insira as ferramentas ou métodos de modelagem usados, por exemplo, "algoritmos de machine learning como XGBoost e RandomForest"] para construir nosso modelo. As métricas de avaliação incluem [insira as métricas usadas, por exemplo, "precisão, recall e a área sob a curva ROC"].
+[ESCREVA AQUI — o que esta análise **não** permite concluir. A distinção entre
+descrever, prever e explicar: o Pareto diz qual motivo é mais citado, mas isso não
+prova que agir sobre ele reduziria o churn.]
 
+## 🚧 Próximos passos
 
-## 📈 Insights e Conclusões
+[ESCREVA AQUI]
 
-[Resuma os principais insights obtidos e as conclusões do seu projeto. Por exemplo, "Nossa análise revelou que... Isso sugere que..."]
+---
 
-## 📜 Estrutura do Projeto
+## 📁 Estrutura do projeto
 
-A estrutura de diretórios do projeto foi organizada da seguinte forma:
 ```
-├── README.md 
-├── data
-│ ├── processed
-│ └── raw
-├── models
-├── notebooks 
-├── reports
-│ └── figures 
+├── README.md
 ├── requirements.txt
-├── src
-│ ├── __init__.py 
-│ ├── data
-│ │ └── [NomeDoScriptDeDados].py 
-│ ├── features
-│ │ └── [NomeDoScriptDeFeatures].py 
-│ ├── models
-│ │ ├── predict_model.py 
-│ │ └── train_model.py 
-
+├── notebooks/
+│   └── 01-analise-exploratoria-churn.ipynb
+├── src/
+│   └── exec_univariado.py      # pipeline de limpeza reutilizável
+└── reports/
+    └── figures/
 ```
 
-## 🚧 Próximos Passos
+## 🔁 Como reproduzir
 
-[Descreva os próximos passos para o seu projeto, por exemplo, "O próximo passo é implementar o modelo em um ambiente de produção para testar sua eficácia em tempo real."]
+O notebook lê os dados diretamente do repositório público da instituição, então **roda
+sem nenhuma configuração**. Basta abrir no Colab pelo botão acima e executar tudo.
 
+Para rodar localmente:
 
+```bash
+git clone https://github.com/brenno-azevedo/streaming_churn.git
+cd streaming_churn
+pip install -r requirements.txt
+jupyter notebook notebooks/01-analise-exploratoria-churn.ipynb
+```
+
+Ou usar só o pipeline de limpeza:
+
+```python
+from src.exec_univariado import executar_pipeline
+df = executar_pipeline()
+```
+
+## 🔒 Sobre os dados
+
+A base é **sintética**, fornecida pelo curso para fins didáticos, e **não é versionada
+neste repositório** — o `.gitignore` bloqueia `*.csv` deliberadamente. O notebook lê os
+arquivos da fonte pública original, o que mantém a análise reprodutível sem publicar
+dado algum aqui.
+
+Nenhuma informação real de cliente é usada ou distribuída neste projeto.
+
+---
+
+**Brenno Azevedo** · [LinkedIn](https://www.linkedin.com/in/) · [GitHub](https://github.com/brenno-azevedo)

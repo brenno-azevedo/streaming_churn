@@ -1,1 +1,6 @@
-
+# Faixas mínimas, não versões fixas: o notebook foi verificado tanto no pandas 2.2
+# (versão do Google Colab) quanto no 3.0, e não usa nenhuma API que tenha mudado entre as duas.
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+seaborn>=0.13
