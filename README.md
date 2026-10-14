@@ -1,17 +1,28 @@
 # Análise Exploratória de Churn — Plataforma de Streaming
 
-Análise exploratória completa de uma base de 5.025 assinantes de uma plataforma de
-cursos online, da limpeza de dados até quatro frameworks de decisão de negócio —
-sem nenhum modelo preditivo.
+**Preço é o motivo nº 1 de cancelamento. Mas quem paga menos é quem mais cancela.**
 
-**Projeto da disciplina _Dados, IA e Negócio_ — Pós-graduação em Data Science e IA (UNIPDS/Anhanguera)**
+A diretoria queria entender por que o cancelamento piorou. A explicação mais citada pelos
+próprios clientes aponta para o preço — e os dados sugerem que ela está errada.
+
+| | |
+|---|---|
+| **25 pontos** | é a queda de retenção entre quem entrou em dez/22 e em mai/23, medida no mesmo 8º mês de vida |
+| **59%** | dos cancelamentos se concentram em apenas dois motivos |
+| **12%** | da base chegou com erro de escala no valor da mensalidade |
+
+5.025 assinantes · exportados às pressas de três sistemas diferentes · nenhum modelo preditivo
 
 📓 **[Abrir o notebook](notebooks/01-analise-exploratoria-churn.ipynb)** ·
 [Executar no Colab](https://colab.research.google.com/github/brenno-azevedo/streaming_churn/blob/master/notebooks/01-analise-exploratoria-churn.ipynb)
 
+![Retenção por safra de entrada](reports/figures/cohort-retencao.png)
+
+<sub>Cada linha é um grupo que entrou no mesmo mês. As células em branco não são retenção zero — são o fim da janela de observação.</sub>
+
 ---
 
-## 💼 O problema de negócio
+## 💼 O problema
 
 A diretoria de uma plataforma de cursos por assinatura desconfia que o cancelamento
 piorou, e ninguém sabe explicar por quê. Foi entregue um extrato de 5.025 clientes,
@@ -19,32 +30,6 @@ exportado às pressas de três sistemas diferentes — portanto com inconsistên
 
 Antes de perguntar "que modelo usar", a pergunta é mais básica: **o que existe nesse
 dado, o que está errado nele, e o que ele já responde sem modelagem nenhuma.**
-
-## 🔍 O que foi feito
-
-| Etapa | Conteúdo |
-|---|---|
-| **Análise univariada** | Tipos, valores ausentes, cardinalidade, padronização de categorias e deduplicação |
-| **Saneamento** | Consistência lógica entre as quatro colunas de data e tratamento de outliers por tipo |
-| **Engenharia de atributos** | Criação de `recencia`, `meses_assinatura` e `receita_acumulada` |
-| **Análise bivariada** | Relação de cada variável com o churn, sobre base filtrada por maturidade mínima |
-| **Frameworks de decisão** | Coorte de retenção, RFM adaptado, Pareto dos motivos e funil de onboarding |
-
-## 🧹 O que o dado tinha de errado
-
-| Problema | Escala |
-|---|---|
-| Grafias inconsistentes em `plano` | 8 grafias para 3 planos |
-| Grafias inconsistentes em `canal_aquisicao` | 9 grafias para 4 canais |
-| Valor curinga `"?"` em `regiao` | 170 registros |
-| Erro de escala em `valor_mensal` | 596 registros (~12% da base) |
-| Idades impossíveis (−2, 0, 1, 150, 300) | 13 registros |
-| Último acesso anterior à assinatura | 1 registro |
-| Clientes duplicados | 25 `cliente_id` repetidos |
-
-> **Detalhe que vale registrar:** as duplicatas só ficam visíveis **depois** de padronizar
-> as grafias. Antes disso, `duplicated()` encontra apenas 1 linha, porque `"Padrao"` e
-> `"Padrão"` não batem como texto. A ordem das etapas de limpeza muda o resultado.
 
 ## 📈 Principais achados
 
@@ -79,6 +64,32 @@ Conversar com quem parou na hora de assinar. O funil mostra onde a perda acontec
 Testar antes de aplicar em todo mundo. Qualquer mudança no plano de entrada — preço, quantidade de conteúdo, formato — deve valer primeiro para uma parte dos clientes, mantendo o resto como comparação. É a única forma de saber se o resultado veio da mudança ou foi coincidência.
 
 ---
+
+## 🔍 O que foi feito
+
+| Etapa | Conteúdo |
+|---|---|
+| **Análise univariada** | Tipos, valores ausentes, cardinalidade, padronização de categorias e deduplicação |
+| **Saneamento** | Consistência lógica entre as quatro colunas de data e tratamento de outliers por tipo |
+| **Engenharia de atributos** | Criação de `recencia`, `meses_assinatura` e `receita_acumulada` |
+| **Análise bivariada** | Relação de cada variável com o churn, sobre base filtrada por maturidade mínima |
+| **Frameworks de decisão** | Coorte de retenção, RFM adaptado, Pareto dos motivos e funil de onboarding |
+
+## 🧹 O que o dado tinha de errado
+
+| Problema | Escala |
+|---|---|
+| Grafias inconsistentes em `plano` | 8 grafias para 3 planos |
+| Grafias inconsistentes em `canal_aquisicao` | 9 grafias para 4 canais |
+| Valor curinga `"?"` em `regiao` | 170 registros |
+| Erro de escala em `valor_mensal` | 596 registros (~12% da base) |
+| Idades impossíveis (−2, 0, 1, 150, 300) | 13 registros |
+| Último acesso anterior à assinatura | 1 registro |
+| Clientes duplicados | 25 `cliente_id` repetidos |
+
+> **Detalhe que vale registrar:** as duplicatas só ficam visíveis **depois** de padronizar
+> as grafias. Antes disso, `duplicated()` encontra apenas 1 linha, porque `"Padrao"` e
+> `"Padrão"` não batem como texto. A ordem das etapas de limpeza muda o resultado.
 
 ## 📁 Estrutura do projeto
 
@@ -125,4 +136,6 @@ Nenhuma informação real de cliente é usada ou distribuída neste projeto.
 
 ---
 
-**Brenno Azevedo** · [LinkedIn](https://www.linkedin.com/in/) · [GitHub](https://github.com/brenno-azevedo)
+Projeto da disciplina *Dados, IA e Negócio* — Pós-graduação em Data Science e IA (UNIPDS/Anhanguera).
+
+**Brenno Azevedo** · [LinkedIn](https://www.linkedin.com/in/brenno-azevedo) · [GitHub](https://github.com/brenno-azevedo)
