@@ -1,0 +1,18 @@
+# Dados — por decisão de projeto, nenhuma base é versionada neste repositório.
+# O notebook lê os dados do repositório público do curso.
+data/
+*.csv
+*.xlsx
+
+# Credenciais
+.env
+*.key
+
+# Temporários de Python e Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
